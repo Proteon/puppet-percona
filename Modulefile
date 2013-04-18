@@ -7,5 +7,4 @@ summary 'A modules for installing and configuring Percona XtraDB Cluster on Debi
 description 'A modules for installing and configuring Percona XtraDB Cluster on Debian like servers'
 project_page 'https://github.com/Proteon/puppet-percona'
 
-## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/apt', '>=1.1.0'
