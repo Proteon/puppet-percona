@@ -1,0 +1,33 @@
+# Managed by Puppet
+# Setting specific to Percona XtraDB Cluster's Galera layer
+#
+# http://www.codership.com/wiki/doku.php?id=mysql_options_0.8
+# http://www.codership.com/wiki/doku.php?id=configuration_tips
+# Currently (Oct 2012) mostly based on a 'getting started' document.
+
+[mysqld]
+
+# Full path to wsrep provider library or 'none' to disable galera
+wsrep_provider=/usr/lib/libgalera_smm.so
+
+# for MyISAM support
+wsrep_replicate_myisam=1
+
+# to enable debug level logging, set this to 1
+wsrep_debug=1
+
+# how many times to retry deadlocked autocommits
+wsrep_retry_autocommit=1
+
+# convert locking sessions into transactions
+wsrep_convert_LOCK_to_trx=1
+
+# Generate fake primary keys for non-PK tables (required for multi-master and parallel applying operation)
+wsrep_certify_nonPK=1
+
+# Required for Galera
+innodb_locks_unsafe_for_binlog=1
+innodb_autoinc_lock_mode=2
+default_storage_engine=InnoDB
+query_cache_size=0
+query_cache_type=0
