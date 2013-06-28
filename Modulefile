@@ -1,10 +1,10 @@
-name    'puppet-percona'
-version '0.1.0'
-source 'git@github.com:Proteon/puppet-percona.git'
+name 'proteon-percona'
+version '0.1.1'
+
 author 'Proteon'
 license 'Apache License, Version 2.0'
+project_page 'https://github.com/Proteon/puppet-percona'
+source 'git@github.com:Proteon/puppet-percona.git'
 summary 'A modules for installing and configuring Percona XtraDB Cluster on Debian like servers'
 description 'A modules for installing and configuring Percona XtraDB Cluster on Debian like servers'
-project_page 'https://github.com/Proteon/puppet-percona'
-
 dependency 'puppetlabs/apt', '>=1.1.0'
