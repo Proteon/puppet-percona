@@ -168,4 +168,10 @@ class percona::xtradb_cluster (
         enable  => $::mysql_run_at_boot,
         require => Package['mysql-server']
     }
+
+    file { '/etc/logrotate.d/percona-xtradb-cluster-server-5.5':
+        ensure  => 'present',
+        source  => 'puppet:///modules/percona/percona-xtradb-cluster-server-5.5.logrotate',
+        require => Package[$percona::xtradb_cluster::package_name],
+    }
 }
