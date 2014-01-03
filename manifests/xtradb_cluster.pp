@@ -127,14 +127,14 @@ class percona::xtradb_cluster (
 
     exec { 'Initialize MySQL server root password':
         unless  => '/usr/bin/test -f /root/.my.cnf',
-        command => "mysqladmin -u${mysql_user} password '${mysql_password}'",
+        command => "/usr/bin/mysqladmin -u${mysql_user} password '${mysql_password}'",
         notify  => Exec['Generate my.cnf'],
         require => Package['mysql-server'],
     }
 
     exec { 'Generate my.cnf':
         command     => "/bin/echo -e '[mysql]\\nuser=${mysql_user}\\npassword=${mysql_password}\\n[mysqladmin]\\nuser=${mysql_user}\\npassword=${mysql_password}\\n[mysqldump]\\nuser=${mysql_user}\\npassword=${mysql_password}\\n[mysqlshow]\\nuser=${mysql_user}\\npassword=${mysql_password}\\n' > /root/.my.cnf",
-        unless      => 'test -f /root/.my.cnf',
+        unless      => '/usr/bin/test -f /root/.my.cnf',
         refreshonly => true,
         creates     => '/root/.my.cnf',
     }

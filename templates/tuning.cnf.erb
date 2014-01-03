@@ -32,7 +32,7 @@ table_open_cache        = 4096
 # query_cache_size        = 32M       # ... up to a maximum combined size of 32M.
 
 ##### INNODB #####
-innodb_buffer_pool_size        = <%= tuning['innodb_buffer_pool_size'] %>     # Should depend on $memorysize, wether this node is dedicated to MySQL and normal memory overhead
+innodb_buffer_pool_size        = <%= @tuning['innodb_buffer_pool_size'] %>     # Should depend on $memorysize, wether this node is dedicated to MySQL and normal memory overhead
 innodb_flush_method            = O_DIRECT   # O_DIRECT or O_DSYNC, direct might be better on raid, dsync might be better on a SAN
 innodb_log_files_in_group      = 2
 innodb_log_file_size           = 256M   # Default is 5M, a larger value implies less IO, but slower recovery after a crash, since reliability is high due to clustering, this can be quite high in our case, THIS VALUE MAY NOT CHANGES ONCE SET

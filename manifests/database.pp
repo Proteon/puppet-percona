@@ -39,8 +39,8 @@ define percona::database(
     if $ensure == present {
         $database_name  = $name
         if $host == 'localhost' {
-            $mysqladmin_cmd = '/usr/bin/mysqladmin'
-            $mysql_cmd      = '/usr/bin/mysql'
+            $mysqladmin_cmd = '/usr/bin/mysqladmin --defaults-file=/root/.my.cnf'
+            $mysql_cmd      = '/usr/bin/mysql --defaults-file=/root/.my.cnf'
         } else {
             $mysqladmin_cmd = "/usr/bin/mysqladmin -h ${host} -u ${user} -p${password}"
             $mysql_cmd      = "/usr/bin/mysql -h ${host} -u ${user} -p${password}"

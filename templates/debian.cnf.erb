@@ -3,11 +3,11 @@
 [client]
 host     = localhost
 user     = debian-sys-maint
-password = <%= cluster['maintenance_pwd'] %>
+password = <%= @cluster['maintenance_pwd'] %>
 socket   = /var/run/mysqld/mysqld.sock
 [mysql_upgrade]
 host     = localhost
 user     = debian-sys-maint
-password = <%= cluster['maintenance_pwd'] %>
+password = <%= @cluster['maintenance_pwd'] %>
 socket   = /var/run/mysqld/mysqld.sock
 basedir  = /usr

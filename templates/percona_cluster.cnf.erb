@@ -9,14 +9,14 @@
 
 # Try and see if any of my partners are up 
 # Please note, the portnumbers are required, leaving them out will lead to unexpected behaviour
-wsrep_urls=<% cluster['nodes'].keys.each do |partner| -%>gcomm://<%= cluster['nodes'][partner]['gcomm_addr'] %>:<%= cluster['nodes'][partner]['gcomm_port'] %>,<% end -%><% if cluster['reform'] == true -%>gcomm://<% end -%>
+wsrep_urls=<% @cluster['nodes'].keys.each do |partner| -%>gcomm://<%= @cluster['nodes'][partner]['gcomm_addr'] %>:<%= @cluster['nodes'][partner]['gcomm_port'] %>,<% end -%><% if @cluster['reform'] == true -%>gcomm://<% end -%>
 
 [mysqld]
 
 # The name of the cluster
-wsrep_cluster_name=<%= cluster['name'] %>
+wsrep_cluster_name=<%= @cluster['name'] %>
 
 # The SnapShot Transfer method
-wsrep_sst_method=<%= cluster['sst_method'] %>
+wsrep_sst_method=<%= @cluster['sst_method'] %>
 
 
