@@ -31,6 +31,6 @@ class percona {
         release    => $::lsbdistcodename,
         repos      => 'main',
         key        => 'CD2EFD2A',
-        key_server => 'keys.gnupg.net',
+        key_server => 'hkp://keys.gnupg.net:80',
     }
 }
