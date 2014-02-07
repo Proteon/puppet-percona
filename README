@@ -1,7 +1,7 @@
 puppet-percona
 ==============
 
-A modules for installing and configuring Percona XtraDB Cluster on Debian like
+A module for installing and configuring Percona XtraDB Cluster on Debian like
 servers.
 
 This module was inspired partially on our internal MySQL module. Which in turn
