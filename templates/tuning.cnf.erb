@@ -20,7 +20,7 @@ max_connect_errors      = 1000000
 ##### CACHES AND LIMITS #####
 tmp_table_size          = 32M       # Default 16M, limited by max_heap_table_size
 max_heap_table_size     = 32M       # Default 16M
-max_connections         = <% if (tuning and tuning.has_key?('max_connections')) then -%><%= tuning['max_connections'] %>
+max_connections         = <% if (@tuning and @tuning.has_key?('max_connections')) then -%><%= @tuning['max_connections'] %>
 <% else %>500
 <% end -%>
 thread_cache_size       = 50
