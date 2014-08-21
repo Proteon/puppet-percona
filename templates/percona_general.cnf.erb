@@ -11,19 +11,19 @@
 wsrep_provider=/usr/lib/libgalera_smm.so
 
 # for MyISAM support
-wsrep_replicate_myisam=1
+wsrep_replicate_myisam=<%= @wsrep_replicate_myisam %>
 
 # to enable debug level logging, set this to 1
-wsrep_debug=1
+wsrep_debug=<%= @wsrep_debug %>
 
 # how many times to retry deadlocked autocommits
-wsrep_retry_autocommit=1
+wsrep_retry_autocommit=<%= @wsrep_retry_autocommit %>
 
 # convert locking sessions into transactions
-wsrep_convert_LOCK_to_trx=1
+wsrep_convert_LOCK_to_trx=<%= @wsrep_convert_lock_to_trx %>
 
 # Generate fake primary keys for non-PK tables (required for multi-master and parallel applying operation)
-wsrep_certify_nonPK=1
+wsrep_certify_nonPK=<%= @wsrep_certify_nonpk %>
 
 # Required for Galera
 innodb_locks_unsafe_for_binlog=1

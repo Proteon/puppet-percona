@@ -62,11 +62,16 @@
 #
 class percona::xtradb_cluster (
     $cluster = {}, # default value of {} to silence puppet-lint
+    $package_name = 'percona-xtradb-cluster-server-5.5',
+    # some overridable settings
+    $wsrep_convert_lock_to_trx = 1, 
+    $wsrep_replicate_myisam = 1,
+    $wsrep_retry_autocommit = 1,
+    $wsrep_certify_nonpk = 1,
+    $wsrep_debug = 1,
 ) {
     # to include the repository
     include percona
-
-    $package_name = 'percona-xtradb-cluster-server-5.5'
 
     $mysql_user         = $cluster['mysql_root_user']
     $mysql_password     = $cluster['mysql_root_pwd']
