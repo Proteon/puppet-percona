@@ -16,7 +16,6 @@ wsrep_urls=<% @cluster['nodes'].keys.each do |partner| -%>gcomm://<%= @cluster['
 # The name of the cluster
 wsrep_cluster_name=<%= @cluster['name'] %>
 
-# The SnapShot Transfer method
+# The SnapShot Transfer details
 wsrep_sst_method=<%= @cluster['sst_method'] %>
-
-
+<% if @cluster['sst_auth'] %>wsrep_sst_auth=<%= @cluster['sst_auth'] %><% end %>

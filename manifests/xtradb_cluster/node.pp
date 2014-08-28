@@ -36,9 +36,9 @@ define percona::xtradb_cluster::node (
     ##### Cluster specific config #####
     file { '/etc/mysql/conf.d/percona_cluster.cnf':
         ensure  => present,
-        owner   => 'mysql',
+        owner   => 'root',
         group   => 'mysql',
-        mode    => '0600',
+        mode    => '0640',
         content => template('percona/percona_cluster.cnf.erb'),
         require => Package[$percona::xtradb_cluster::package_name],
         notify  => $change_notification,
@@ -47,9 +47,9 @@ define percona::xtradb_cluster::node (
     ##### Node specific config #####
     file { '/etc/mysql/conf.d/percona_node.cnf':
         ensure  => present,
-        owner   => 'mysql',
+        owner   => 'root',
         group   => 'mysql',
-        mode    => '0600',
+        mode    => '0640',
         content => template('percona/percona_node.cnf.erb'),
         require => Package[$percona::xtradb_cluster::package_name],
         notify  => $change_notification,
@@ -59,9 +59,9 @@ define percona::xtradb_cluster::node (
     # Set and potentially override some tunin parameters
     file { '/etc/mysql/conf.d/tuning.cnf':
         ensure  => present,
-        owner   => 'mysql',
+        owner   => 'root',
         group   => 'mysql',
-        mode    => '0600',
+        mode    => '0640',
         content => template('percona/tuning.cnf.erb'),
         require => Package[$percona::xtradb_cluster::package_name],
         notify  => $change_notification,

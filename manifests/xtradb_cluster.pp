@@ -18,6 +18,7 @@
 #        # cluster wide variables
 #        name            => 'dbcluster01',
 #        sst_method      => 'rsync', # options are rsync, mysqldump, xtrabackup, ...
+#        sst_auth        => 'someuser:somepassword', # if left temp
 #        mysql_root_user => 'root', # mysql root user must be the same acros the cluster
 #        mysql_root_pwd  => 'secret', # mysql root pwd must be the same acros the cluster
 #        maintenance_pwd => 'also_secret', # for debian-sys-maint, must be the same acros the cluster
@@ -94,8 +95,8 @@ class percona::xtradb_cluster (
     file { '/etc/mysql/my.cnf':
         ensure  => present,
         owner   => 'root',
-        group   => 'root',
-        mode    => '0600',
+        group   => 'mysql',
+        mode    => '0640',
         content => template('percona/my.cnf.erb'),
         require => Package[$percona::xtradb_cluster::package_name],
         notify  => $change_notification,
@@ -146,9 +147,9 @@ class percona::xtradb_cluster (
 
     file { '/etc/mysql/debian.cnf':
         ensure  => present,
-        owner   => 'mysql',
+        owner   => 'root',
         group   => 'mysql',
-        mode    => '0600',
+        mode    => '0640',
         content => template('percona/debian.cnf.erb'),
         require => [
             Package[$percona::xtradb_cluster::package_name],
@@ -176,6 +177,9 @@ class percona::xtradb_cluster (
 
     file { '/etc/logrotate.d/percona-xtradb-cluster-server-5.5':
         ensure  => 'present',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0600',
         source  => 'puppet:///modules/percona/percona-xtradb-cluster-server-5.5.logrotate',
         require => Package[$percona::xtradb_cluster::package_name],
     }
