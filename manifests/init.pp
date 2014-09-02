@@ -25,9 +25,11 @@
 #
 # Copyright 2013 Proteon
 #
-class percona {
+class percona (
+    $repo_location = 'http://repo.percona.com/apt',
+) {
     apt::source { 'percona':
-        location   => 'http://repo.percona.com/apt',
+        location   => $repo_location,
         release    => $::lsbdistcodename,
         repos      => 'main',
         key        => 'CD2EFD2A',
