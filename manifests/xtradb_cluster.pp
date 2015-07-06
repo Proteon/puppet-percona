@@ -69,7 +69,7 @@ class percona::xtradb_cluster (
     $wsrep_replicate_myisam = 1,
     $wsrep_retry_autocommit = 1,
     $wsrep_certify_nonpk = 1,
-    $wsrep_debug = 1,
+    $wsrep_debug = 0,
 ) {
     # to include the repository
     include percona
