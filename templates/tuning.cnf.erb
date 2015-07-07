@@ -18,8 +18,8 @@ max_allowed_packet      = 128M
 max_connect_errors      = 1000000
 
 ##### CACHES AND LIMITS #####
-tmp_table_size          = 32M       # Default 16M, limited by max_heap_table_size
-max_heap_table_size     = 32M       # Default 16M
+tmp_table_size          = <% if (@tuning and @tuning.has_key?('tmp_table_size')) then -%><%= @tuning['tmp_table_size'] %><% else %>32M<% end -%>       # Default 16M, limited by max_heap_table_size
+max_heap_table_size     = <% if (@tuning and @tuning.has_key?('max_heap_table_size')) then -%><%= @tuning['max_heap_table_size'] %><% else %>32M<% end -%>       # Default 16M
 max_connections         = <% if (@tuning and @tuning.has_key?('max_connections')) then -%><%= @tuning['max_connections'] %>
 <% else %>500
 <% end -%>
@@ -34,11 +34,15 @@ table_open_cache        = 4096
 # query_cache_size        = 32M       # ... up to a maximum combined size of 32M.
 
 ##### INNODB #####
-innodb_buffer_pool_size        = <%= @tuning['innodb_buffer_pool_size'] %>     # Should depend on $memorysize, wether this node is dedicated to MySQL and normal memory overhead
+innodb_buffer_pool_size        = <% if (@tuning and @tuning.has_key?('innodb_buffer_pool_size')) then -%><%= @tuning['innodb_buffer_pool_size'] %><% else %>64M<% end -%>     # Should depend on $memorysize, wether this node is dedicated to MySQL and normal memory overhead
 innodb_flush_method            = O_DIRECT   # O_DIRECT or O_DSYNC, direct might be better on raid, dsync might be better on a SAN
 innodb_log_files_in_group      = 2
 innodb_log_file_size           = 256M   # Default is 5M, a larger value implies less IO, but slower recovery after a crash, since reliability is high due to clustering, this can be quite high in our case, THIS VALUE MAY NOT CHANGES ONCE SET
 innodb_flush_log_at_trx_commit = 2
 innodb_file_per_table          = 1
 innodb_file_format             = Barracuda  # Latest file format, requires innodb_file_per_table and allows for advanced InnoDB features such as table compression
+
+##### GENERAL #####
+
+performance_schema = <% if (@tuning and @tuning.has_key?('performance_schema')) then -%><%= @tuning['performance_schema'] %><% else %>off<% end -%>  # Caution, enabling the performance schema will take about 1/2G extra memory
 
