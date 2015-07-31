@@ -27,6 +27,7 @@ thread_cache_size       = 50
 open_files_limit        = 65535
 table_definition_cache  = 4096
 table_open_cache        = 4096
+connect_timeout         = <% if (@tuning and @tuning.has_key?('connect_timeout')) then -%><%= @tuning['connect_timeout'] %><% else %>10<% end -%>
 
 # Query caching isn't supported in a cluster
 # query_cache_type        = 1         # Enable (select) query caching ...
