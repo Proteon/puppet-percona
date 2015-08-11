@@ -19,3 +19,5 @@ wsrep_cluster_name=<%= @cluster['name'] %>
 # The SnapShot Transfer details
 wsrep_sst_method=<%= @cluster['sst_method'] %>
 <% if @cluster['sst_auth'] %>wsrep_sst_auth=<%= @cluster['sst_auth'] %><% end %>
+
+<% if @cluster['wsrep_provider_options'] %>wsrep_provider_options=<%= @cluster['wsrep_provider_options'] %><% end %>
