@@ -64,6 +64,7 @@
 class percona::xtradb_cluster (
     $cluster = {}, # default value of {} to silence puppet-lint
     $bind_address = '0.0.0.0', # on which address the server wil listen
+    $wsrep_node_address = '0.0.0.0', # The address to bind the replication (port 4567) connection on
     $package_name = 'percona-xtradb-cluster-server-5.5',
     # some overridable settings
     $wsrep_convert_lock_to_trx = 1, 
@@ -86,6 +87,7 @@ class percona::xtradb_cluster (
     }
 
     $_bind_address = $bind_address # TODO: allow for overriding from a variable in $cluster
+    $_wsrep_node_address = $wsrep_node_address # TODO: allow for overriding from a variable in $cluster
 
     package { $package_name:
         alias    => 'mysql-server',

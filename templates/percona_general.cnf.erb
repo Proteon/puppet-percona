@@ -7,6 +7,9 @@
 
 [mysqld]
 
+# The address to bind the replication (port 4567) connection on
+wsrep_node_address=<%= @_wsrep_node_address %>
+
 # Full path to wsrep provider library or 'none' to disable galera
 wsrep_provider=/usr/lib/libgalera_smm.so
 
