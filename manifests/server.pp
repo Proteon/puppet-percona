@@ -60,8 +60,8 @@
 #
 class percona::server (
     $package_name = 'percona-server-server',
-    $root_password, # create a random password with something like 'pwgen 24 1'
-    $listen_address, # must be 127.0.0.1 for a db only used locally or 0.0.0.0 otherwise
+    $root_password, # create a random password with something like 'pwgen 24 1
+    $bind_address = '127.0.0.1', # on which address the server wil listen'
     $tuning = {},
     $restart_on_changes = true,
 ) {
@@ -70,6 +70,7 @@ class percona::server (
 
     $mysql_user         = 'root'
     $mysql_password     = $root_password
+    $_bind_address = $bind_address # because it's used with this name in the template
 
     if $restart_on_changes == true {
         $change_notification = Service['mysql']
