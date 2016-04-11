@@ -64,6 +64,9 @@ class percona::server (
     $bind_address = '127.0.0.1', # on which address the server wil listen'
     $tuning = {},
     $restart_on_changes = true,
+    $default_character_set = 'utf8',
+    $character_set_server = 'utf8',
+    $collation_server = 'utf8_general_ci',
 ) {
     # to include the repository
     include percona
