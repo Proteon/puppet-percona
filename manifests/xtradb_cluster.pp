@@ -72,6 +72,9 @@ class percona::xtradb_cluster (
     $wsrep_retry_autocommit = 1,
     $wsrep_certify_nonpk = 1,
     $wsrep_debug = 0,
+    $default_character_set = 'utf8',
+    $character_set_server = 'utf8',
+    $collation_server = 'utf8_general_ci',
 ) {
     # to include the repository
     include percona
