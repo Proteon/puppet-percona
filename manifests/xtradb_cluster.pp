@@ -100,7 +100,13 @@ class percona::xtradb_cluster (
     ##### Config #####
 
     # main configuration, should be quite neutral
-    file { '/etc/mysql/my.cnf':
+
+    case $lsbdistcodename {
+        'wily', 'xenial': { $my_cnf_file = '/etc/mysql/percona-xtradb-cluster.cnf' }
+        default: 	  { $my_cnf_file = '/etc/mysql/my.cnf' }
+    }
+
+    file { $my_cnf_file:
         ensure  => present,
         owner   => 'root',
         group   => 'mysql',
