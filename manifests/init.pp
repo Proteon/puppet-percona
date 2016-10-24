@@ -28,6 +28,8 @@
 class percona (
     $repo_location = 'http://repo.percona.com/apt',
 ) {
+    include percona::secure_installation
+
     apt::source { 'percona':
         location   => $repo_location,
         release    => $::lsbdistcodename,
