@@ -34,7 +34,7 @@ class percona (
         location   => $repo_location,
         release    => $::lsbdistcodename,
         repos      => 'main',
-        key        => { 'server' => 'keys.gnupg.net', 'id' => '430BDF5C56E7C94E848EE60C1C4CBDCDCD2EFD2A'},
+        key        => { 'server' => 'keys.gnupg.net', 'id' => '4D1BB29D63D98E422B2113B19334A25F8507EFA5'},
         #key_server => 'keys.gnupg.net',
     }
 }
