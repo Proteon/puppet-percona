@@ -5,10 +5,12 @@ class percona::monitoring (
 ) {
 
     if $lsbdistcodename == 'xenial' {
-        fail('package percona-nagios-plugins not available yet')
+        ensure_packages('nagios-plugins-contrib')
+        $_script_path = '/usr/lib/nagios/plugins/pmp-check-mysql-status'
+    } else {
+        ensure_packages('percona-nagios-plugins')
+        $_script_path = '/usr/lib64/nagios/plugins/pmp-check-mysql-status'
     }
-
-    ensure_packages('percona-nagios-plugins')
 
     file { '/etc/nagios/nrpe.d/percona_cluster_checks.cfg':
         ensure     => 'present',
@@ -24,7 +26,7 @@ class percona::monitoring (
         owner  => 'root',
         group  => 'root',
         mode   => '0644',
-        content => 'nagios  ALL=(ALL) NOPASSWD:/usr/lib64/nagios/plugins/pmp-check-mysql-status
-',
+        content => "nagios  ALL=(ALL) NOPASSWD:${_script_path}
+",
     }
 }
