@@ -23,7 +23,7 @@ datadir=`mysqld --verbose --help 2>&1 | egrep 'datadir\s+' | awk '{print $2}'`
 # - if possible, check if the other db servers in the cluster are stopped too
 # - guesstimate if there is enough space for the procedure
 
-if [ "$datadir" -eq "/var/lib/mysql/" ] || [ "$datadir" -eq "/var/lib/percona-server/" ] ; then
+if [ "$datadir" == "/var/lib/mysql/" ] || [ "$datadir" == "/var/lib/percona-server/" ] ; then
     echo "MySQL's datadir is '${datadir}', and that is a valid value."
 else
     echo "ERROR, MySQL's datadir is '${datadir}', and that is not value I recognize."
