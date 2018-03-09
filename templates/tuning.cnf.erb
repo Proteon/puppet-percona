@@ -11,7 +11,7 @@
 key_buffer_size         = 32M           # index buffer shared over all threads
 read_buffer_size        = 1M            # per thread for sequential scans
 read_rnd_buffer_size    = 1M            # per session buffer used for sorting
-myisam_recover          = FORCE,BACKUP  # In case of a crash, force a recovery, but make a backup just in case
+myisam_recover<% if @package_name == 'percona-server-server-5.7' then -%>_options<% end -%>          = FORCE,BACKUP  # In case of a crash, force a recovery, but make a backup just in case
 
 ##### SAFETY #####
 max_allowed_packet      = 128M
