@@ -64,9 +64,7 @@ class percona::server (
     $bind_address = '127.0.0.1', # on which address the server wil listen'
     $tuning = {},
     $restart_on_changes = true,
-    $default_character_set = 'utf8',
-    $character_set_server = 'utf8',
-    $collation_server = 'utf8_general_ci',
+    $utf8mb4 = false
 ) {
     # to include the repository
     include percona
@@ -160,6 +158,17 @@ class percona::server (
         require => Package[$package_name],
         notify  => $change_notification,
         before  => Service['mysql'],
+    }
+
+    if ($utf8mb4) {
+        file { '/etc/mysql/conf.d/utf8mb4.cnf':
+            ensure  => present,
+            owner   => 'root',
+            group   => 'mysql',
+            mode    => '0644',
+            source  => 'puppet:///modules/percona/utf8mb4.cnf',
+            require => Package[$package_name],
+        }
     }
 
 }
