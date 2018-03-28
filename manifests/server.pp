@@ -87,7 +87,7 @@ class percona::server (
     ##### Config #####
 
     case $lsbdistcodename {
-        'wily', 'xenial': { $my_cnf_file = '/etc/mysql/percona-xtradb-cluster.cnf' }
+        'wily', 'xenial': { $my_cnf_file = '/etc/mysql/percona-server.cnf' }
         default:          { $my_cnf_file = '/etc/mysql/my.cnf' }
     }
 
