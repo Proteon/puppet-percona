@@ -1,7 +1,0 @@
-[mysqld]
-collation-server = utf8mb4_general_ci
-character-set-server = utf8mb4
-character_set_filesystem=utf8
-init-connect='SET NAMES utf8'
-init_connect='SET collation_connection=utf8_general_ci'
-
