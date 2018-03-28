@@ -89,7 +89,7 @@ class percona::server (
     ##### Config #####
 
     case $lsbdistcodename {
-        'wily', 'xenial': { $my_cnf_file = '/etc/mysql/percona-server.cnf' }
+        'wily', 'xenial': { $my_cnf_file = '/etc/mysql/percona-server.conf.d/mysqld..cnf' }
         default:          { $my_cnf_file = '/etc/mysql/my.cnf' }
     }
 
