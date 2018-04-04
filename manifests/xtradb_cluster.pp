@@ -73,8 +73,8 @@ class percona::xtradb_cluster (
     $wsrep_certify_nonpk = 1,
     $wsrep_debug = 0,
     $default_character_set = 'utf8',
-    $character_set_server = 'utf8',
-    $collation_server = 'utf8_general_ci',
+    $character_set_server = 'utf8mb4',
+    $collation_server = 'utf8mb4_general_ci',
 ) {
     # to include the repository
     include percona
@@ -113,7 +113,6 @@ class percona::xtradb_cluster (
         mode    => '0640',
         content => template('percona/my.cnf.erb'),
         require => Package[$percona::xtradb_cluster::package_name],
-        notify  => $change_notification,
     }
 
     file { '/etc/mysql/conf.d/logging.cnf':

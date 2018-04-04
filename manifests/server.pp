@@ -65,8 +65,8 @@ class percona::server (
     $tuning = {},
     $restart_on_changes = true,
     $default_character_set = 'utf8',
-    $character_set_server = 'utf8',
-    $collation_server = 'utf8_general_ci',
+    $character_set_server = 'utf8mb4',
+    $collation_server = 'utf8mb4_general_ci',
 ) {
     # to include the repository
     include percona
@@ -101,7 +101,6 @@ class percona::server (
         mode    => '0640',
         content => template('percona/my.cnf.erb'),
         require => Package[$package_name],
-        notify  => $change_notification,
     }
 
     file { '/etc/mysql/conf.d/logging.cnf':
