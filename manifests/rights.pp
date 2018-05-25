@@ -73,20 +73,18 @@ define percona::rights (
         if $db_host == 'localhost' {
             $mysqladmin_cmd = '/usr/bin/mysqladmin --defaults-file=/root/.my.cnf'
             $mysql_cmd      = '/usr/bin/mysql --defaults-file=/root/.my.cnf'
-            $required       = [
-                File['/root/.my.cnf'],
-                Service['mysql'],
-            ]
         } else {
             $mysqladmin_cmd = "/usr/bin/mysqladmin -h ${db_host} -u ${db_user} -p${db_password}"
             $mysql_cmd      = "/usr/bin/mysql -h ${db_host} -u ${db_user} -p${db_password}"
-            $required       = undef
         }
 
         exec { "create rights for ${name}" :
             command     => "${mysql_cmd} mysql -e \"${grant_statement}\" && ${mysqladmin_cmd} flush-privileges",
             unless      => "${mysql_cmd} mysql -e \"show grants for '${user}'@'${host}'\" | grep \"${quoted_database}.*\" | grep `${mysql_cmd} --skip-column-names -e \"SELECT PASSWORD('${password}')\"`",
-            require     => $required,
+            require     => [
+                File['/root/.my.cnf'],
+                Service['mysql'],
+            ],
             path        => ['/bin', '/usr/bin', '/usr/local/bin'],
             logoutput   => true,
         }
