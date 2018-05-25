@@ -73,7 +73,10 @@ define percona::rights (
         if $db_host == 'localhost' {
             $mysqladmin_cmd = '/usr/bin/mysqladmin --defaults-file=/root/.my.cnf'
             $mysql_cmd      = '/usr/bin/mysql --defaults-file=/root/.my.cnf'
-            $required       = File['/root/.my.cnf']
+            $required       = [
+                File['/root/.my.cnf'],
+                Service['mysql'],
+            ]
         } else {
             $mysqladmin_cmd = "/usr/bin/mysqladmin -h ${db_host} -u ${db_user} -p${db_password}"
             $mysql_cmd      = "/usr/bin/mysql -h ${db_host} -u ${db_user} -p${db_password}"
@@ -91,3 +94,4 @@ define percona::rights (
         notify { "WARNING: percona::rights called with name = '${name}' but with ensure = '${ensure}'": }
     }
 }
+

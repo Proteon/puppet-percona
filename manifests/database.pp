@@ -49,6 +49,7 @@ define percona::database(
             unless  => "${mysql_cmd} ${database_name} -e exit",
             command => "${mysqladmin_cmd} create ${database_name}",
             path    => ['/bin','/usr/bin','/usr/local/bin'],
+            require => Service['mysql'],
         }
     } else {
         notify {

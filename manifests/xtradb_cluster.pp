@@ -148,7 +148,10 @@ class percona::xtradb_cluster (
         unless  => '/usr/bin/test -f /root/.my.cnf',
         command => "/usr/bin/mysqladmin -u${mysql_user} password '${mysql_password}'",
         notify  => Exec['Generate my.cnf'],
-        require => Package['mysql-server'],
+        require => [
+            Package['mysql-server'],
+            Service['mysql'],
+        ],
     }
 
     exec { 'Generate my.cnf':
